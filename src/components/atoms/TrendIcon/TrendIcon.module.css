@@ -1,0 +1,9 @@
+.trendIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.trendIcon:hover {
+  transform: scale(1.1);
+} 

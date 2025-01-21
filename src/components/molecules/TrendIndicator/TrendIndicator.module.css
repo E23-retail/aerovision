@@ -1,0 +1,93 @@
+.trendIndicator {
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trendIndicator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0.1;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trendIndicator:hover::before {
+  opacity: 0.15;
+}
+
+.trendIndicator:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.icon {
+  position: relative;
+  z-index: 1;
+  margin-right: 0.25rem;
+}
+
+.value {
+  position: relative;
+  z-index: 1;
+}
+
+/* Trend type styles with MUI palette integration */
+.positive {
+  --trend-color: var(--mui-palette-success-main, #2e7d32);
+  --trend-bg: var(--mui-palette-success-light, #e8f5e9);
+  color: var(--trend-color);
+  background: var(--trend-bg);
+}
+
+.negative {
+  --trend-color: var(--mui-palette-error-main, #d32f2f);
+  --trend-bg: var(--mui-palette-error-light, #ffebee);
+  color: var(--trend-color);
+  background: var(--trend-bg);
+}
+
+.neutral {
+  --trend-color: var(--mui-palette-text-secondary, #757575);
+  --trend-bg: var(--mui-palette-action-hover, #f5f5f5);
+  color: var(--trend-color);
+  background: var(--trend-bg);
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .trendIndicator {
+    border: 1px solid currentColor;
+  }
+
+  .trendIndicator::before {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .trendIndicator,
+  .trendIndicator::before {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .trendIndicator {
+    border: 1px solid currentColor;
+    background: none !important;
+    padding: 0.125rem 0.375rem;
+  }
+
+  .trendIndicator::before {
+    display: none;
+  }
+} 

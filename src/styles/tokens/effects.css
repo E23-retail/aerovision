@@ -1,0 +1,114 @@
+:root {
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --shadow-highlight: 0 0 0 3px var(--color-primary-100);
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Border Widths */
+  --border-1: 1px;
+  --border-2: 2px;
+  --border-4: 4px;
+  --border-8: 8px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-spring: 300ms cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  --transition-timing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-timing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-timing-spring: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  
+  /* Z-Index */
+  --z-negative: -1;
+  --z-elevate: 1;
+  --z-sticky: 100;
+  --z-drawer: 200;
+  --z-dropdown: 300;
+  --z-modal: 400;
+  --z-popover: 500;
+  --z-toast: 600;
+  --z-tooltip: 700;
+
+  /* Blur Effects */
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(12px);
+  --blur-xl: blur(16px);
+  --blur-2xl: blur(24px);
+  --blur-3xl: blur(32px);
+
+  /* Animation Durations */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+  --duration-slowest: 700ms;
+
+  /* Skeleton Loading */
+  --skeleton-bg: linear-gradient(
+    90deg,
+    var(--color-neutral-100) 0%,
+    var(--color-neutral-200) 50%,
+    var(--color-neutral-100) 100%
+  );
+  --skeleton-animation: skeleton-loading 1.5s infinite;
+
+  /* Page Transitions */
+  --page-enter: fade-enter 200ms var(--transition-timing-spring);
+  --page-exit: fade-exit 150ms var(--transition-timing-default);
+
+  /* Card Hover Effects */
+  --card-hover-transform: translateY(-4px);
+  --card-hover-shadow: var(--shadow-lg);
+  --card-hover-transition: transform var(--transition-spring), 
+                          box-shadow var(--transition-normal),
+                          border-color var(--transition-normal);
+
+  /* Focus Ring */
+  --focus-ring: 0 0 0 2px var(--color-surface-50),
+                0 0 0 4px var(--color-primary-200);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fade-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+} 
