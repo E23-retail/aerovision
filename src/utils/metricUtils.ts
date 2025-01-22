@@ -1,6 +1,5 @@
 import { Theme } from '@mui/material';
-import { MetricTrend } from '../types/metrics';
-
+import { MetricTrend } from '../features/analytics/types';
 /**
  * Formats a trend value with a plus sign for positive values
  * @param value - The numerical value to format

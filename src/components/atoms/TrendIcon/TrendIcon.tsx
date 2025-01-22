@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { SvgIcon, SvgIconProps, useTheme } from '@mui/material';
-import { MetricTrend } from '../../../types/metrics';
+import { MetricTrend } from '../../../features/analytics/types';
 
 interface TrendIconProps extends Omit<SvgIconProps, 'children'> {
   /** The trend information */

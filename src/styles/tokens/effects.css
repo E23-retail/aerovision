@@ -6,6 +6,8 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --shadow-highlight: 0 0 0 3px var(--color-primary-100);
+  --shadow-colored: 0 4px 12px -2px var(--shadow-color, rgba(0, 0, 0, 0.05));
+  --shadow-glow: 0 0 15px var(--glow-color, rgba(14, 165, 233, 0.15));
 
   /* Border Radius */
   --radius-sm: 0.25rem;
@@ -27,6 +29,8 @@
   --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-spring: 300ms cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  --transition-elastic: 600ms cubic-bezier(0.34, 1.56, 0.88, 1);
+  --transition-smooth: 400ms cubic-bezier(0.65, 0, 0.35, 1);
   --transition-timing-default: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-timing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-timing-spring: cubic-bezier(0.68, -0.6, 0.32, 1.6);
@@ -49,6 +53,7 @@
   --blur-xl: blur(16px);
   --blur-2xl: blur(24px);
   --blur-3xl: blur(32px);
+  --glass-effect: blur(8px) saturate(140%);
 
   /* Animation Durations */
   --duration-fast: 150ms;
@@ -71,15 +76,37 @@
   --page-exit: fade-exit 150ms var(--transition-timing-default);
 
   /* Card Hover Effects */
-  --card-hover-transform: translateY(-4px);
-  --card-hover-shadow: var(--shadow-lg);
-  --card-hover-transition: transform var(--transition-spring), 
+  --card-hover-transform: translateY(-4px) scale(1.01);
+  --card-hover-shadow: var(--shadow-lg), var(--shadow-glow);
+  --card-hover-transition: transform var(--transition-spring),
                           box-shadow var(--transition-normal),
-                          border-color var(--transition-normal);
+                          border-color var(--transition-normal),
+                          background-color var(--transition-normal);
 
   /* Focus Ring */
   --focus-ring: 0 0 0 2px var(--color-surface-50),
                 0 0 0 4px var(--color-primary-200);
+
+  /* Interactive States */
+  --hover-lift: translateY(-2px);
+  --hover-scale: scale(1.05);
+  --active-press: scale(0.98);
+
+  /* Gradient Effects */
+  --gradient-primary: linear-gradient(135deg, 
+    var(--color-primary-500),
+    var(--color-primary-600)
+  );
+  --gradient-subtle: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  --gradient-shine: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
 }
 
 @keyframes skeleton-loading {
@@ -110,5 +137,85 @@
   to {
     opacity: 0;
     transform: translateY(10px);
+  }
+}
+
+/* Enhanced Animations */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-2px);
+  }
+  40%, 80% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
   }
 } 

@@ -1,20 +1,24 @@
 import React from 'react';
-import { mockMetrics, mockTimeSeriesData } from '../mock/data';
-import { MetricCard } from '../components/organisms/MetricCard/MetricCard';
-import { AudienceChart } from '../components/organisms/AudienceChart/AudienceChart';
+import { mockMetrics, mockTimeSeriesData } from '../mocks/data/data';
+import { MetricCard } from '../features/analytics/components/MetricCard/MetricCard';
+import { AudienceChart } from '../features/analytics/components/AudienceChart/AudienceChart';
 import styles from './Dashboard.module.css';
 
-export const Dashboard: React.FC = () => {
+interface DashboardProps {
+  className?: string;
+}
+
+export const Dashboard: React.FC<DashboardProps> = ({ className }) => {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className || ''}`}>
       <header className={styles.header}>
         <h1>Dashboard</h1>
       </header>
 
-      <div className={styles.metricsGrid}>
+      <section className={styles.metricsGrid} aria-label="Key Metrics">
         {mockMetrics.map((metric, index) => (
           <MetricCard
-            key={index}
+            key={`metric-${metric.title}-${index}`}
             title={metric.title}
             value={metric.value}
             change={metric.change}
@@ -22,14 +26,14 @@ export const Dashboard: React.FC = () => {
             trend={metric.trend}
           />
         ))}
-      </div>
+      </section>
 
-      <div className={styles.chartSection}>
+      <section className={styles.chartSection} aria-label="Audience Analytics">
         <AudienceChart
           data={mockTimeSeriesData}
           title="Audience Distribution Over Time"
         />
-      </div>
+      </section>
     </div>
   );
 };

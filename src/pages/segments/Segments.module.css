@@ -1,0 +1,396 @@
+.container {
+  padding: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: var(--color-surface-50);
+  min-height: 100vh;
+  animation: var(--animation-fade-in);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* MUI-style Paper component for header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),
+              0px 1px 1px 0px rgba(0,0,0,0.14),
+              0px 1px 3px 0px rgba(0,0,0,0.12);
+  position: sticky;
+  top: 24px;
+  z-index: var(--z-sticky);
+  margin: -16px -16px 0 -16px;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.header:hover {
+  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),
+              0px 3px 4px 0px rgba(0,0,0,0.14),
+              0px 1px 8px 0px rgba(0,0,0,0.12);
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0;
+  line-height: 1.334;
+  letter-spacing: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+/* MUI-style Button component */
+.createButton {
+  background: var(--color-primary-500);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+              box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+              border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 64px;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),
+              0px 2px 2px 0px rgba(0,0,0,0.14),
+              0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+
+.createButton:hover {
+  background: var(--color-primary-600);
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),
+              0px 4px 5px 0px rgba(0,0,0,0.14),
+              0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+
+.createButton:active {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),
+              0px 8px 10px 1px rgba(0,0,0,0.14),
+              0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+  padding: 8px;
+  margin: 0 -8px;
+}
+
+/* MUI-style Card component */
+.card {
+  background: white;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),
+              0px 1px 1px 0px rgba(0,0,0,0.14),
+              0px 1px 3px 0px rgba(0,0,0,0.12);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),
+              0px 3px 4px 0px rgba(0,0,0,0.14),
+              0px 1px 8px 0px rgba(0,0,0,0.12);
+}
+
+/* MUI-style CardHeader */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin: 0 0 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.segmentName {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+/* MUI-style Grid for metrics */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  position: relative;
+  padding: 8px 0;
+}
+
+/* MUI-style Paper for metrics */
+.metric {
+  background: var(--color-surface-50);
+  padding: 16px;
+  border-radius: 4px;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.metric:hover {
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),
+              0px 1px 1px 0px rgba(0,0,0,0.14),
+              0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+.metricLabel {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  text-transform: uppercase;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.metricValue {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+/* MUI-style Chip component */
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  padding: 0 12px;
+  height: 24px;
+  border-radius: 16px;
+  white-space: nowrap;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.trendUp {
+  background: var(--color-success-50);
+  color: var(--color-success-700);
+}
+
+.trendDown {
+  background: var(--color-error-50);
+  color: var(--color-error-700);
+}
+
+.trendNeutral {
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-700);
+}
+
+/* MUI-style Typography for description */
+.description {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  padding: 8px 0;
+}
+
+/* MUI-style Chip container */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+/* MUI-style Chip */
+.tag {
+  height: 24px;
+  padding: 0 12px;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  border-radius: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  background: rgba(0, 0, 0, 0.08);
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  display: inline-flex;
+  align-items: center;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  white-space: nowrap;
+}
+
+.tag:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* MUI-style CardActions */
+.actions {
+  display: flex;
+  gap: 8px;
+  padding: 8px 0 0 0;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* MUI-style Button variants */
+.editButton, .deleteButton {
+  padding: 5px 15px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+              box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+              border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 64px;
+  flex: 1;
+  text-transform: uppercase;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.editButton {
+  background: transparent;
+  border: 1px solid var(--color-primary-500);
+  color: var(--color-primary-500);
+}
+
+.editButton:hover {
+  background: rgba(25, 118, 210, 0.04);
+}
+
+.deleteButton {
+  background: transparent;
+  border: 1px solid var(--color-error-500);
+  color: var(--color-error-500);
+}
+
+.deleteButton:hover {
+  background: rgba(211, 47, 47, 0.04);
+}
+
+/* MUI-style Skeleton */
+.skeleton {
+  background: rgba(0, 0, 0, 0.11);
+  animation: animation-c7515d 1.5s ease-in-out 0.5s infinite;
+  border-radius: 4px;
+}
+
+.cardSkeleton {
+  height: 360px;
+  border-radius: 4px;
+  animation: animation-c7515d 1.5s ease-in-out 0.5s infinite;
+}
+
+@keyframes animation-c7515d {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    margin: -16px -16px 0 -16px;
+    border-radius: 0;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .createButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .editButton, .deleteButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 8px;
+  }
+
+  .header {
+    margin: -8px -8px 0 -8px;
+    padding: 12px;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+} 

@@ -9,9 +9,8 @@ import {
   ResponsiveContainer,
   Legend
 } from 'recharts';
-import { TimeSeriesData } from '../../../features/analytics/types';
+import { TimeSeriesData } from '../../types';
 import styles from './AudienceChart.module.css';
-
 
 interface AudienceChartProps {
   data: TimeSeriesData[];

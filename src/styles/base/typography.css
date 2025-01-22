@@ -1,0 +1,53 @@
+/* Typography Base */
+.font-roboto {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+/* Font Sizes */
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1.66;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.43;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.text-lg {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.text-xl {
+  font-size: 1.5rem;
+  line-height: 1.334;
+}
+
+/* Font Weights */
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+/* Text Colors */
+.text-primary {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.text-secondary {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Text Transform */
+.uppercase {
+  text-transform: uppercase;
+} 
