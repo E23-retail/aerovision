@@ -4,6 +4,7 @@ import Analytics from './pages/analytics';
 import Segments from './pages/segments';
 import Campaigns from './pages/campaigns';
 import AppLayout from './layouts/AppLayout/AppLayout';
+import Settings from './pages/settings';
 
 export const App: React.FC = () => {
   return (
@@ -14,8 +15,7 @@ export const App: React.FC = () => {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/segments" element={<Segments />} />
           <Route path="/campaigns" element={<Campaigns />} />
-          {/* Add other routes as they are implemented */}
-          {/* <Route path="/settings" element={<Settings />} /> */}
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </AppLayout>
     </Router>
