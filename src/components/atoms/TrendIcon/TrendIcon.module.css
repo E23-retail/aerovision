@@ -1,9 +1,21 @@
-.trendIcon {
-  width: 16px;
-  height: 16px;
+.icon {
+  width: 24px;
+  height: 24px;
   transition: transform 0.2s ease;
 }
 
-.trendIcon:hover {
+.icon:hover {
   transform: scale(1.1);
+}
+
+.up {
+  color: var(--status-success);
+}
+
+.down {
+  color: var(--status-error);
+}
+
+.neutral {
+  color: var(--text-secondary);
 } 

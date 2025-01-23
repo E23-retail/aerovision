@@ -1,66 +1,88 @@
 import React from 'react';
-import { mockSegments } from '../../mocks/data/data';
-import { SegmentCriteria } from '../../features/segments/types';
+import { useSegments } from '../../hooks/useSegments';
+import PageHeader from '../../components/molecules/PageHeader/PageHeader';
+import Button from '../../components/atoms/Button/Button';
+import Card from '../../components/molecules/Card/Card';
+import { MetricCard } from '../../features/analytics/components/MetricCard/MetricCard';
 import styles from './Segments.module.css';
 
 export const Segments: React.FC = () => {
-  const formatNumber = (num: number): string => {
-    return new Intl.NumberFormat('en-US').format(num);
-  };
-
-  const renderCriteria = (criteria: SegmentCriteria) => {
-    return Object.entries(criteria).map(([key, value]) => {
-      if (Array.isArray(value)) {
-        return (
-          <div key={key} className={styles.criteriaItem}>
-            <span className={styles.criteriaLabel}>{key}:</span>
-            <span className={styles.criteriaValue}>{value.join(', ')}</span>
-          </div>
-        );
-      }
-      return (
-        <div key={key} className={styles.criteriaItem}>
-          <span className={styles.criteriaLabel}>{key}:</span>
-          <span className={styles.criteriaValue}>{value}</span>
-        </div>
-      );
-    });
-  };
+  const { segments, isLoading } = useSegments();
 
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1>Audience Segments</h1>
-        <button className={styles.createButton}>
-          Create New Segment
-        </button>
-      </header>
+      <PageHeader
+        title="Audience Segments"
+        description="Create and manage audience segments based on traveler behavior and preferences"
+        actions={
+          <Button variant="primary" size="md">
+            Create Segment
+          </Button>
+        }
+      />
+
+      <div className={styles.overview}>
+        <MetricCard
+          title="Total Segments"
+          value={segments.length}
+          trend="neutral"
+          change={0}
+          period="All time"
+        />
+        <MetricCard
+          title="Active Segments"
+          value={segments.filter(s => s.count > 0).length}
+          trend="up"
+          change={12.5}
+          period="vs last month"
+        />
+      </div>
 
       <div className={styles.segmentGrid}>
-        {mockSegments.map((segment) => (
-          <div key={segment.id} className={styles.segmentCard}>
+        {segments.map(segment => (
+          <Card key={segment.id} className={styles.segmentCard}>
             <div className={styles.segmentHeader}>
-              <h3 className={styles.segmentName}>{segment.name}</h3>
-              <span className={styles.segmentCount}>
-                {formatNumber(segment.count)} travelers
-              </span>
+              <h3>{segment.name}</h3>
+              <span className={styles.count}>{segment.count.toLocaleString()} travelers</span>
             </div>
             
             <div className={styles.criteria}>
-              {renderCriteria(segment.criteria)}
+              {segment.criteria.travelClass && (
+                <div className={styles.criteriaItem}>
+                  <span className={styles.label}>Travel Class</span>
+                  <div className={styles.tags}>
+                    {segment.criteria.travelClass.map(cls => (
+                      <span key={cls} className={styles.tag}>{cls}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {segment.criteria.interests && (
+                <div className={styles.criteriaItem}>
+                  <span className={styles.label}>Interests</span>
+                  <div className={styles.tags}>
+                    {segment.criteria.interests.map(interest => (
+                      <span key={interest} className={styles.tag}>{interest}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className={styles.actions}>
-              <button className={styles.editButton}>
-                Edit Segment
-              </button>
-              <button className={styles.deleteButton}>
-                Delete
-              </button>
+              <Button variant="outline" size="sm">Edit</Button>
+              <Button variant="outline" size="sm">Export</Button>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
+
+      {isLoading && (
+        <div className={styles.loading}>
+          Loading segments...
+        </div>
+      )}
     </div>
   );
 };

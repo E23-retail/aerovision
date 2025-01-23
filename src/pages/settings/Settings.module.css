@@ -2,12 +2,13 @@
   padding: 32px;
   max-width: 800px;
   margin: 0 auto;
+  background: var(--background-primary);
 }
 
 .title {
   font-size: 2rem;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   margin-bottom: 32px;
 }
 
@@ -16,10 +17,10 @@
 }
 
 .section h2 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--color-text-primary);
-  margin-bottom: 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24px;
 }
 
 .card {
@@ -30,15 +31,14 @@
 
 .setting {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 16px 0;
-  border-bottom: 1px solid var(--color-neutral-100);
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .setting:last-child {
   border-bottom: none;
-  padding-bottom: 0;
 }
 
 .setting:first-child {
@@ -46,9 +46,9 @@
 }
 
 .setting label {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--color-text-primary);
+  color: var(--text-secondary);
 }
 
 .loading {
@@ -75,13 +75,17 @@
 
 @media (max-width: 640px) {
   .container {
-    padding: 16px;
+    padding: 24px 16px;
   }
 
   .setting {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 12px;
+  }
+
+  .setting label {
+    margin-bottom: 4px;
   }
 
   .loading {

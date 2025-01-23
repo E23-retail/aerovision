@@ -1,115 +1,92 @@
 import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../providers/ThemeProvider';
 import { useSettings } from '../../hooks/useSettings';
 import Card from '../../components/molecules/Card/Card';
 import Select from '../../components/atoms/Select/Select';
 import Switch from '../../components/atoms/Switch/Switch';
 import styles from './Settings.module.css';
 
-export const Settings: React.FC = () => {
+const Settings: React.FC = () => {
   const { mode, setMode } = useTheme();
-  const {
-    notifications,
-    display,
-    isLoading,
-    updateNotifications,
-    updateDisplay
-  } = useSettings();
-
-  const handleThemeChange = (newMode: string) => {
-    setMode(newMode as 'light' | 'dark' | 'system');
-  };
-
-  const handleDensityChange = (newDensity: string) => {
-    updateDisplay({ density: newDensity as 'comfortable' | 'compact' | 'spacious' });
-  };
+  const { display, notifications, updateDisplay, updateNotifications } = useSettings();
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Settings</h1>
       
-      <section className={styles.section}>
-        <h2>Display</h2>
-        <Card className={styles.card}>
+      <div className={styles.section}>
+        <Card>
+          <h2>Theme Settings</h2>
           <div className={styles.setting}>
-            <label htmlFor="theme">Theme</label>
+            <label htmlFor="theme">Theme Mode</label>
             <Select
               id="theme"
               value={mode}
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleThemeChange(e.target.value)}
+              onChange={(value) => setMode(value as unknown as 'light' | 'dark' | 'system')}
               options={[
                 { value: 'light', label: 'Light' },
                 { value: 'dark', label: 'Dark' },
-                { value: 'system', label: 'System' }
+                { value: 'system', label: 'System' },
               ]}
             />
           </div>
-          
           <div className={styles.setting}>
             <label htmlFor="density">Display Density</label>
             <Select
               id="density"
               value={display.density}
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleDensityChange(e.target.value)}
+              onChange={(e) => updateDisplay({ density: e.target.value as 'comfortable' | 'compact' | 'spacious' })}
               options={[
                 { value: 'comfortable', label: 'Comfortable' },
                 { value: 'compact', label: 'Compact' },
-                { value: 'spacious', label: 'Spacious' }
               ]}
             />
           </div>
-
           <div className={styles.setting}>
             <label htmlFor="animations">Enable Animations</label>
             <Switch
               id="animations"
               checked={display.animations}
-              onChange={(checked: boolean) => updateDisplay({ animations: checked })}
+              onChange={(checked) => updateDisplay({ animations: checked })}
             />
           </div>
         </Card>
-      </section>
+      </div>
 
-      <section className={styles.section}>
-        <h2>Notifications</h2>
-        <Card className={styles.card}>
+      <div className={styles.section}>
+        <Card>
+          <h2>Notification Settings</h2>
           <div className={styles.setting}>
-            <label htmlFor="email">Email Notifications</label>
+            <label htmlFor="emailNotifications">Email Notifications</label>
             <Switch
-              id="email"
+              id="emailNotifications"
               checked={notifications.email}
-              onChange={(checked: boolean) => updateNotifications({ email: checked })}
+              onChange={(checked) => updateNotifications({ email: checked })}
             />
           </div>
-
           <div className={styles.setting}>
-            <label htmlFor="push">Push Notifications</label>
+            <label htmlFor="pushNotifications">Push Notifications</label>
             <Switch
-              id="push"
+              id="pushNotifications"
               checked={notifications.push}
-              onChange={(checked: boolean) => updateNotifications({ push: checked })}
+              onChange={(checked) => updateNotifications({ push: checked })}
             />
           </div>
-
           <div className={styles.setting}>
             <label htmlFor="frequency">Notification Frequency</label>
             <Select
               id="frequency"
               value={notifications.frequency}
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => 
-                updateNotifications({ frequency: e.target.value as 'realtime' | 'daily' | 'weekly' })
-              }
+              onChange={(e) => updateNotifications({ frequency: e.target.value as 'realtime' | 'daily' | 'weekly' })}
               options={[
                 { value: 'realtime', label: 'Real-time' },
                 { value: 'daily', label: 'Daily Digest' },
-                { value: 'weekly', label: 'Weekly Summary' }
+                { value: 'weekly', label: 'Weekly Summary' },
               ]}
             />
           </div>
         </Card>
-      </section>
-
-      {isLoading && <div className={styles.loading}>Saving changes...</div>}
+      </div>
     </div>
   );
 };
