@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
-
-type ThemeMode = 'light' | 'dark' | 'system';
+import { Theme, ThemeMode } from '../types/theme';
+import { lightTheme, darkTheme } from '../styles/tokens/theme';
 
 interface UseThemeReturn {
   mode: ThemeMode;
   isDark: boolean;
+  theme: Theme;
   setMode: (mode: ThemeMode) => void;
   toggleMode: () => void;
 }
@@ -16,20 +17,23 @@ export const useTheme = (): UseThemeReturn => {
   });
 
   const [isDark, setIsDark] = useState(false);
+  const [theme, setTheme] = useState<Theme>(lightTheme);
 
   const updateTheme = useCallback((newMode: ThemeMode) => {
     setMode(newMode);
     localStorage.setItem('theme-mode', newMode);
     
+    let shouldBeDark = false;
+    
     if (newMode === 'system') {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDark(prefersDark);
-      document.documentElement.classList.toggle('dark', prefersDark);
+      shouldBeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     } else {
-      const shouldBeDark = newMode === 'dark';
-      setIsDark(shouldBeDark);
-      document.documentElement.classList.toggle('dark', shouldBeDark);
+      shouldBeDark = newMode === 'dark';
     }
+    
+    setIsDark(shouldBeDark);
+    setTheme(shouldBeDark ? darkTheme : lightTheme);
+    document.documentElement.classList.toggle('dark', shouldBeDark);
   }, []);
 
   const toggleMode = useCallback(() => {
@@ -42,6 +46,7 @@ export const useTheme = (): UseThemeReturn => {
     const handleChange = (e: MediaQueryListEvent) => {
       if (mode === 'system') {
         setIsDark(e.matches);
+        setTheme(e.matches ? darkTheme : lightTheme);
         document.documentElement.classList.toggle('dark', e.matches);
       }
     };
@@ -57,6 +62,7 @@ export const useTheme = (): UseThemeReturn => {
   return {
     mode,
     isDark,
+    theme,
     setMode: updateTheme,
     toggleMode
   };

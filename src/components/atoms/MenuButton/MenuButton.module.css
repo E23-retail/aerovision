@@ -1,0 +1,53 @@
+.menuButton {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-primary);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  transition: background-color 0.2s ease;
+  padding: 8px;
+}
+
+.menuButton:hover {
+  background: var(--interactive-hover);
+}
+
+.menuButton svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.menuButton.open svg {
+  transform: rotate(180deg);
+}
+
+@media (min-width: 769px) {
+  .menuButton {
+    display: none;
+  }
+}
+
+/* Dark theme */
+:global(.dark) .menuButton {
+  background: #1f2937;
+  border-color: #374151;
+  color: white;
+}
+
+:global(.dark) .menuButton:hover {
+  background: #374151;
+}
+
+.transitioning {
+  pointer-events: none;
+} 

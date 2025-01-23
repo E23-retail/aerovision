@@ -1,57 +1,34 @@
-import React, { memo } from 'react';
-import { SvgIcon, SvgIconProps, useTheme } from '@mui/material';
-import { MetricTrend } from '../../../features/analytics/types';
+import React from 'react';
+import styles from './TrendIcon.module.css';
 
-interface TrendIconProps extends Omit<SvgIconProps, 'children'> {
-  /** The trend information */
-  trend: MetricTrend;
+interface TrendIconProps {
+  direction: 'up' | 'down' | 'neutral';
+  className?: string;
 }
 
-export const TrendIconComponent: React.FC<TrendIconProps> = ({ 
-  trend,
-  sx,
-  ...props 
-}) => {
-  const theme = useTheme();
+export const TrendIcon: React.FC<TrendIconProps> = ({ direction, className }) => {
 
-  if (trend.direction === 'neutral') return null;
+  const getPath = () => {
+    switch (direction) {
+      case 'up':
+        return 'M7 14l5-5 5 5H7z';
+      case 'down':
+        return 'M7 10l5 5 5-5H7z';
+      default:
+        return 'M4 12h16';
+    }
+  };
 
   return (
-    <SvgIcon
-      {...props}
-      sx={{
-        fontSize: 'inherit',
-        transition: theme.transitions.create('transform', {
-          duration: theme.transitions.duration.shorter,
-        }),
-        '&:hover': {
-          transform: 'scale(1.1)',
-        },
-        ...sx,
-      }}
-      role="img"
-      aria-label={`${trend.direction} trend indicator`}
+    <svg
+      className={`${styles.icon} ${className || ''} ${styles[direction]}`}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      {trend.direction === 'up' ? (
-        <path
-          d="M8 4L4 8M8 4L12 8M8 4V12"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      ) : (
-        <path
-          d="M8 12L4 8M8 12L12 8M8 12V4"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      )}
-    </SvgIcon>
+      <path d={getPath()} />
+    </svg>
   );
 };
 
-export const TrendIcon = memo(TrendIconComponent);
 export default TrendIcon; 
